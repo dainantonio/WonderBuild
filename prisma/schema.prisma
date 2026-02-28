@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  KID
+  PARENT
+}
+
+enum AgeBand {
+  AGE_6_8
+  AGE_9_12
+  AGE_13_16
+}
+
+model UserProfile {
+  id                String   @id @default(cuid())
+  role              Role
+  parentPinHash     String
+  ageBand           AgeBand  @default(AGE_6_8)
+  allowedCategories Json
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Project {
+  id              String   @id @default(cuid())
+  templateType    String
+  title           String
+  dataJson        Json
+  safetyFlags     Json
+  isShareApproved Boolean  @default(false)
+  shareToken      String?  @unique
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

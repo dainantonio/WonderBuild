@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-gradient-to-b from-sky-50 to-fuchsia-50 text-night;
+}
+
+button, input, select, textarea {
+  @apply focus:outline-none focus:ring-2 focus:ring-ocean focus:ring-offset-2;
+}
